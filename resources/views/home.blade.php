@@ -11,7 +11,10 @@
                     <p class="lead">
                         Have you noticed that there are a lot of "The" characters in the Marvel world? Have you
                         thought about which one could be your favourite one? This is probably the right time and
-                        you're at the right place!
+                        you're at the right place!<br /><br />
+
+                        This is a rapid-development project which uses the <a href="http://developer.marvel
+                        .com/">Marvel developer API</a>.
                     </p>
 
                     <p><a class="btn btn-lg btn-success" href="{{ route('game.start') }}" role="button">Start
