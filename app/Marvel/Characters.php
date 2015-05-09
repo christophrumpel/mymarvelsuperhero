@@ -21,20 +21,25 @@ class Characters
         $this->superheroApi = new SuperheroApi($publicKey, $privateKey);
     }
 
-    public function findById($id)
+    public function findById($id, array $characters)
     {
-        return $this->superheroApi->getCharacterById($id);
+        $characters = collect($characters);
+        return $characters->filter(function($character) use ($id) {
+            if($character['id'] == $id)
+                return true;
+        })->first();
 
     }
 
-    public function all()
+    public function all($filters)
     {
-        return $this->superheroApi->getAllCharacters(0, 10);
+        return $this->superheroApi->getAllCharacters($filters);
     }
 
     public function random($count, array $characters)
     {
         $charactersCollection = collect($characters);
+
         return $charactersCollection->random($count);
     }
 
@@ -63,10 +68,30 @@ class Characters
         $characterCollection->lists('id');
 
         return $characterCollection->filter(function ($character) use ($idsToDelete) {
-            if (!in_array($character['id'], $idsToDelete))
+            if (!in_array($character['id'], $idsToDelete)) {
                 return true;
+            }
 
         })->toArray();
 
+    }
+
+    /**
+     * Remove characters where is no image
+     * @param $charactersInGame
+     * @return array
+     */
+    public function removeCharactersWithoutImage(array $charactersInGame)
+    {
+        $characters = collect($charactersInGame);
+
+        $characters = $characters->filter(function ($character) {
+
+            if ($character['thumbnail']['path'] != 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available') {
+                return true;
+            }
+        });
+
+        return $characters->toArray();
     }
 }

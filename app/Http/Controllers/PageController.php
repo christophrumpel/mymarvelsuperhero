@@ -35,11 +35,13 @@ class Pagecontroller extends Controller
         Session::forget('charactersInGame');
         Session::regenerate();
 
-        $charactersInGame = $this->characters->all()['data']['results'];
+        $charactersInGame = $this->characters->all(['nameStartsWith' => 'The '])['data']['results'];
+
+        $charactersInGame = $this->characters->removeCharactersWithoutImage($charactersInGame);
 
         Session::put('charactersInGame', $charactersInGame);
 
-        var_dump(collect(Session::get('charactersInGame'))->lists('id'));
+        //var_dump(collect(Session::get('charactersInGame'))->lists('id'));
 
         $opponents = $this->characters->getOpponents($charactersInGame);
 
@@ -60,13 +62,14 @@ class Pagecontroller extends Controller
 
         $winnerId = (int) \Input::get('winnerId');
         $loserId = $this->getLoser(Session::get('currentOpponents'), $winnerId);
+        $winner = $this->characters->findById($winnerId, Session::get('currentOpponents'));
         $charactersInGame = $this->characters->removeIds(Session::get('charactersInGame'), [$loserId, $winnerId]);
 
         Session::put('charactersInGame', $charactersInGame);
         $round = Session::get('round') + 1;
 
-        var_dump(collect(Session::get('charactersInGame'))->lists('id'));
-        $winner = $this->characters->findById($winnerId)['data']['results'][0];
+
+        // var_dump(collect(Session::get('charactersInGame'))->lists('id'));
         $challenger = $this->characters->random(1, Session::get('charactersInGame'));
 
         Session::put('currentRound', [$winner, $challenger]);

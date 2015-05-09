@@ -14,15 +14,8 @@
                                     <form action="{{ route('game.running') }}" method="post">
                                         <input type="hidden" name="winnerId" value="{{
                                             $opponent['id'] }}">
-                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                        <a href="#" class="thumbnail">
-                                            <img src="{{ $opponent['thumbnail']['path'] . '.' . $opponent['thumbnail']['extension'] }}"/>
-
-                                            <div class="caption">
-                                                <h3>{{ $opponent['name'] }}</h3>
-                                                <button type="submit" class="btn btn-default">Choose</button>
-                                            </div>
-                                        </a>
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                        @include('parts.character', ['character' => $opponent])
                                     </form>
                                 </div>
                             @endforeach

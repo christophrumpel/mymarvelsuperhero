@@ -12,16 +12,19 @@
 */
 
 
-Route::get('/', 'PageController@home');
+Route::get('/', [
+    'uses' => 'PageController@home',
+    'as'   => 'game.home'
+]);
 
 Route::get('/game', [
-        'uses' => 'PageController@start',
-        'as' => 'game.start'
+    'uses' => 'PageController@start',
+    'as'   => 'game.start'
 ]);
 
 Route::post('/game', [
     'uses' => 'PageController@game',
-    'as' => 'game.running'
+    'as'   => 'game.running'
 ]);
 
 
