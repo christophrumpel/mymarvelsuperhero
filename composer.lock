@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "christophrumpel/marvel-superhero-api",
-            "version": "0.0.2",
+            "version": "0.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/christophrumpel/marvel-superhero-api.git",
-                "reference": "5e1e0aa81fbe3da3ad463fa0ce3a6c0c71972985"
+                "reference": "e9d664cecf257040ad242b45cdd5263c85e60d47"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/christophrumpel/marvel-superhero-api/zipball/5e1e0aa81fbe3da3ad463fa0ce3a6c0c71972985",
-                "reference": "5e1e0aa81fbe3da3ad463fa0ce3a6c0c71972985",
+                "url": "https://api.github.com/repos/christophrumpel/marvel-superhero-api/zipball/e9d664cecf257040ad242b45cdd5263c85e60d47",
+                "reference": "e9d664cecf257040ad242b45cdd5263c85e60d47",
                 "shasum": ""
             },
             "require": {
@@ -48,9 +48,9 @@
             "homepage": "https://github.com/christophrumpel/marvel-superhero-api",
             "keywords": [
                 "christophrumpel",
-                "marvel-superheor-api"
+                "marvel-superheeor-api"
             ],
-            "time": "2015-05-09 15:53:14"
+            "time": "2015-05-09 19:53:26"
         },
         {
             "name": "classpreloader/classpreloader",
